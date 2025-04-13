@@ -361,7 +361,7 @@ export default function Home() {
                   variant="ghost"
                   size="icon"
                   onClick={() =>
-                    window.open("https://github.com/Jerome/Git2Txt", "_blank")
+                    window.open("https://github.com/dreamcatcher45/Git2Txt", "_blank")
                   }
                 >
                   <Github className="h-4 w-4" />
