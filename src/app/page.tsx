@@ -321,17 +321,19 @@ export default function Home() {
             : "translate-y-0 opacity-100"
         )}
       >
-        <div className="text-center py-20 space-y-6">
-          <h1 className="text-9xl font-bold tracking-tight dark:text-white text-black">
+        <div className="text-center py-12 md:py-20 space-y-4 md:space-y-6 px-4">
+          <h1 className="text-6xl md:text-9xl font-bold tracking-tight dark:text-white text-black">
             Git
-            <span className="inline-block rotate-[10deg] text-transparent text-[1.2em] [-webkit-text-stroke:8px_#f35839]">
+            <span className="inline-block rotate-[10deg] text-transparent text-[1.2em] [-webkit-text-stroke:4px_#f35839] md:[-webkit-text-stroke:8px_#f35839]">
               2
             </span>
             Txt
           </h1>
 
-          <p className="text-2xl text-muted-foreground max-w-3xl mx-auto">
-            Convert Git repos to structured text for AI, with minification<br />
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+            Convert Git repos to structured text for AI, with minification
+            <span className="hidden md:inline"><br /></span>
+            <span className="md:hidden"> </span>
             to save tokens.
           </p>
         </div>
@@ -339,10 +341,10 @@ export default function Home() {
 
       <div
         className={cn(
-          "container mx-auto p-4 pt-2 md:px-[10%] md:pt-12 space-y-4 transition-all duration-1000 ease-in-out transform absolute inset-x-0",
+          "container mx-auto p-4 space-y-4 transition-all duration-1000 ease-in-out transform absolute inset-x-0",
           files.length > 0 
-            ? "translate-y-0" 
-            : "translate-y-[45vh] md:translate-y-[50vh]"
+            ? "translate-y-0 pt-2 md:px-[10%] md:pt-12" 
+            : "translate-y-[40vh] md:translate-y-[50vh]"
         )}
       >
         <div
@@ -350,7 +352,7 @@ export default function Home() {
             "transition-all duration-1000 ease-in-out transform",
             files.length > 0
               ? "w-full"
-              : "w-full max-w-2xl mx-auto"
+              : "w-full max-w-xl mx-auto px-4 md:px-0"
           )}
         >
           <Card className="w-full transition-all duration-1000 ease-in-out">
@@ -379,16 +381,17 @@ export default function Home() {
               <CardDescription>
                 Enter a public Git repository URL to fetch its file structure.
               </CardDescription>
-              <div className="flex space-x-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <Input
                   type="url"
                   placeholder="https://github.com/user/repo"
                   value={repoUrl}
                   onChange={(e) => setRepoUrl(e.target.value)}
+                  className="flex-1"
                 />
                 <Button
                   onClick={fetchFiles}
-                  className="bg-primary hover:brightness-90 text-primary-foreground"
+                  className="bg-primary hover:brightness-90 text-primary-foreground whitespace-nowrap"
                   disabled={isLoading}
                 >
                   {isLoading ? (
@@ -450,8 +453,8 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="md:col-span-1 animate-in fade-in duration-500 slide-in-from-bottom-4 [animation-delay:200ms]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <Card className="col-span-1 animate-in fade-in duration-500 slide-in-from-bottom-4 [animation-delay:200ms]">
                 <CardHeader>
                   <CardTitle>Selection Summary</CardTitle>
                   <CardDescription>
