@@ -50,6 +50,19 @@ const structureFiles = (files: GitHubFile[]) => {
   return root;
 };
 
+// Helper function to get all file paths in a directory
+const getAllFilePaths = (directory: { [key: string]: any }): string[] => {
+  let paths: string[] = [];
+  Object.values(directory).forEach((item) => {
+    if (item.type === "file") {
+      paths.push(item.path);
+    } else if (item.type === "dir") {
+      paths = [...paths, ...getAllFilePaths(item.children)];
+    }
+  });
+  return paths;
+};
+
 // Recursive component to render directory structure
 const DirectoryView = ({
   directory,
@@ -81,8 +94,8 @@ const DirectoryView = ({
                 <div className="flex items-center space-x-2 py-1">
                   <Checkbox
                     id={item.path}
-                    checked={Object.values(item.children).every((child: any) =>
-                      selectedFiles.includes(child.path)
+                    checked={getAllFilePaths(item.children).every((path) => 
+                      selectedFiles.includes(path)
                     )}
                     onCheckedChange={(checked) =>
                       toggleFolderSelection(item.path, checked as boolean)
