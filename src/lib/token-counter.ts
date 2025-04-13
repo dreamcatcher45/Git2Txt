@@ -1,4 +1,3 @@
-'use server';
 import { encode } from 'gpt-tokenizer';
 
 // Function to simulate AI model tokenization
